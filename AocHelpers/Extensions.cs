@@ -35,7 +35,7 @@ namespace aoc2020
 
             var client = new HttpClient();
             client.DefaultRequestHeaders.Add("Cookie", $"session={session}");
-            var result = await client.GetStringAsync($"https://adventofcode.com/2019/day/{day}/input");
+            var result = await client.GetStringAsync($"https://adventofcode.com/2020/day/{day}/input");
 
             Console.WriteLine("Downloaded input, saving to disk");
             await File.WriteAllTextAsync(inputPath, result);
