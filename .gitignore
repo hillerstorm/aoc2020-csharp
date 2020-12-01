@@ -1,5 +1,6 @@
-﻿.session
+.session
 .idea
 bin/
 obj/
 aoc2020-csharp.sln.DotSettings.user
+.DS_Store
