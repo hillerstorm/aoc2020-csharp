@@ -12,11 +12,11 @@ namespace aoc2020
 {
     public static class Extensions
     {
-        public static IEnumerable<string> SplitLines(this string input) =>
+        public static string[] SplitLines(this string input) =>
             input.Split("\n", StringSplitOptions.RemoveEmptyEntries);
 
-        public static IEnumerable<int> SplitAsInt(this string input, string separator = "\n") =>
-            input.Split(separator, StringSplitOptions.RemoveEmptyEntries).Select(int.Parse);
+        public static int[] SplitAsInt(this string input, string separator = "\n") =>
+            input.Split(separator, StringSplitOptions.RemoveEmptyEntries).Select(int.Parse).ToArray();
 
         public static async Task<(string? Input, string? Error)> GetInput(this int day)
         {
@@ -60,6 +60,13 @@ namespace aoc2020
 
         public static IEnumerable<(T1 A, T2 B)> Pairs<T1, T2>(this IEnumerable<T1> source, IEnumerable<T2> other) =>
             source.SelectMany(x => other.Select(y => (x, y)));
+
+        public static IEnumerable<(T1 A, T2 B, T3 C)> Triples<T1, T2, T3>(
+            this IEnumerable<T1> source,
+            IEnumerable<T2> first,
+            IEnumerable<T3> second
+        ) =>
+            source.SelectMany(x => first.SelectMany(y => second.Select(z => (x, y, z))));
 
         public static IEnumerable<int> To(this int from, int max) =>
             Enumerable.Range(from, max);

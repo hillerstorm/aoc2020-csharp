@@ -18,4 +18,9 @@
   <ItemGroup>
     <ProjectReference Include="..\aoc2020-csharp\aoc2020-csharp.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <None Update="Inputs\01.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
 </Project>

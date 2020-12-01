@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+
 // ReSharper disable MemberCanBePrivate.Global
 // ReSharper disable UnusedParameter.Global
 
@@ -6,22 +9,25 @@ namespace aoc2020.Days
 {
     public class Day01 : IDay
     {
-        public (Func<string> Part1, Func<string> Part2) Parts(string input)
+        public (Func<string> Part1, Func<string> Part2) Parts(string rawInput)
         {
+            var input = rawInput.SplitAsInt();
             return (
-                () => Part1(input),
-                () => Part2(input)
+                () => Part1(input).ToString(),
+                () => Part2(input).ToString()
             );
         }
 
-        public static string Part1(string input)
+        public static int Part1(int[] input)
         {
-            return string.Empty;
+            var (a, b) = input.Pairs(input).First(x => x.A + x.B == 2020);
+            return a * b;
         }
 
-        public static string Part2(string input)
+        public static int Part2(int[] input)
         {
-            return string.Empty;
+            var (a, b, c) = input.Triples(input, input).First(x => x.A + x.B + x.C == 2020);
+            return a * b * c;
         }
     }
 }
