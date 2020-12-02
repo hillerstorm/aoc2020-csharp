@@ -16,27 +16,24 @@ namespace aoc2020.Days
             );
         }
 
-        private static readonly Regex MatchRegex = new(@"^(?<min>\d+)-(?<max>\d+) (?<chr>[a-z]): (?<pass>.+)$");
+        private static readonly Regex MatchRegex = new(@"^(\d+)-(\d+) ([a-z]): (.+)$");
 
         private static Func<string, bool> MatchesPolicy(Part part) => line =>
         {
             var match = MatchRegex.Match(line);
-            var min = int.Parse(match.Groups["min"].Value);
-            var max = int.Parse(match.Groups["max"].Value);
-            var chr = match.Groups["chr"].Value[0];
-            var pass = match.Groups["pass"].Value;
+            var (_, min, max, chr, pass, _) = match.Groups;
             switch (part)
             {
                 case Part.One:
-                    var count = pass.Count(x => x == chr);
-                    return count >= min && count <= max;
+                    var count = pass.Value.Count(x => x == chr.Value[0]);
+                    return count >= int.Parse(min.Value) && count <= int.Parse(max.Value);
                 case Part.Two:
-                    return pass[min - 1] == chr ^
-                           pass[max - 1] == chr;
+                    return pass.Value[int.Parse(min.Value) - 1] == chr.Value[0] ^
+                           pass.Value[int.Parse(max.Value) - 1] == chr.Value[0];
             }
 
             return false;
-        }
+        };
 
         public static int Part1(IEnumerable<string> input) =>
             input
