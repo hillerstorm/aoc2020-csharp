@@ -18,7 +18,7 @@ namespace aoc2020.Days
 
         private static readonly Regex MatchRegex = new(@"^(?<min>\d+)-(?<max>\d+) (?<chr>[a-z]): (?<pass>.+)$");
 
-        private static bool MatchesPolicy(string line, Part part)
+        private static Func<string, bool> MatchesPolicy(Part part) => line =>
         {
             var match = MatchRegex.Match(line);
             var min = int.Parse(match.Groups["min"].Value);
@@ -41,10 +41,10 @@ namespace aoc2020.Days
 
         public static int Part1(IEnumerable<string> input) =>
             input
-                .Count(x => MatchesPolicy(x, Part.One));
+                .Count(MatchesPolicy(Part.One));
 
         public static int Part2(IEnumerable<string> input) =>
             input
-                .Count(x => MatchesPolicy(x, Part.Two));
+                .Count(MatchesPolicy(Part.Two));
     }
 }
