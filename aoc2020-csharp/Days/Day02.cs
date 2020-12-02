@@ -31,9 +31,8 @@ namespace aoc2020.Days
                     var count = pass.Count(x => x == chr);
                     return count >= min && count <= max;
                 case Part.Two:
-                    var minMatches = pass[min - 1] == chr;
-                    var maxMatches = pass[max - 1] == chr;
-                    return (minMatches || maxMatches) && !(minMatches && maxMatches);
+                    return pass[min - 1] == chr ^
+                           pass[max - 1] == chr;
             }
 
             return false;
