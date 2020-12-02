@@ -90,5 +90,141 @@ namespace aoc2020
             for (var i = 0; i < entries; i++)
                 yield return source.Skip(i * width).Take(width);
         }
+
+        public static void Deconstruct<T>(
+            this IList<T> source,
+            out T a,
+            out IEnumerable<T> rest
+        )
+        {
+            a = source[0];
+            rest = source.Skip(1);
+        }
+
+        public static void Deconstruct<T>(
+            this IList<T> source,
+            out T a,
+            out T b,
+            out IEnumerable<T> rest
+        )
+        {
+            a = source[0];
+            b = source[1];
+            rest = source.Skip(2);
+        }
+
+        public static void Deconstruct<T>(
+            this IList<T> source,
+            out T a,
+            out T b,
+            out T c,
+            out IEnumerable<T> rest
+        )
+        {
+            a = source[0];
+            b = source[1];
+            c = source[2];
+            rest = source.Skip(3);
+        }
+
+        public static void Deconstruct<T>(
+            this IList<T> source,
+            out T a,
+            out T b,
+            out T c,
+            out T d,
+            out IEnumerable<T> rest
+        )
+        {
+            a = source[0];
+            b = source[1];
+            c = source[2];
+            d = source[3];
+            rest = source.Skip(4);
+        }
+
+        public static void Deconstruct<T>(
+            this IList<T> source,
+            out T a,
+            out T b,
+            out T c,
+            out T d,
+            out T e,
+            out IEnumerable<T> rest
+        )
+        {
+            a = source[0];
+            b = source[1];
+            c = source[2];
+            d = source[3];
+            e = source[4];
+            rest = source.Skip(5);
+        }
+
+        public static void Deconstruct<T>(
+            this IList<T> source,
+            out T a,
+            out T b,
+            out T c,
+            out T d,
+            out T e,
+            out T f,
+            out IEnumerable<T> rest
+        )
+        {
+            a = source[0];
+            b = source[1];
+            c = source[2];
+            d = source[3];
+            e = source[4];
+            f = source[5];
+            rest = source.Skip(6);
+        }
+
+        public static void Deconstruct<T>(
+            this IList<T> source,
+            out T a,
+            out T b,
+            out T c,
+            out T d,
+            out T e,
+            out T f,
+            out T g,
+            out IEnumerable<T> rest
+        )
+        {
+            a = source[0];
+            b = source[1];
+            c = source[2];
+            d = source[3];
+            e = source[4];
+            f = source[5];
+            g = source[6];
+            rest = source.Skip(7);
+        }
+
+        public static void Deconstruct<T>(
+            this IList<T> source,
+            out T a,
+            out T b,
+            out T c,
+            out T d,
+            out T e,
+            out T f,
+            out T g,
+            out T h,
+            out IEnumerable<T> rest
+        )
+        {
+            a = source[0];
+            b = source[1];
+            c = source[2];
+            d = source[3];
+            e = source[4];
+            f = source[5];
+            g = source[6];
+            h = source[7];
+            rest = source.Skip(8);
+        }
     }
 }
