@@ -14,6 +14,7 @@ var days = new IDay[]
 {
     new Day01(),
     new Day02(),
+    new Day03(),
 };
 
 if (!int.TryParse(args[0], out var day) || day <= 0 || day > days.Length)
