@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Linq;
+using System.Linq.Expressions;
 using System.Runtime.InteropServices;
 using aoc2020;
-using aoc2020.Days;
 
 if (args.Length == 0)
 {
@@ -10,12 +11,11 @@ if (args.Length == 0)
     return;
 }
 
-var days = new IDay[]
-{
-    new Day01(),
-    new Day02(),
-    new Day03(),
-};
+var iDay = typeof(IDay);
+Type[] days = AppDomain.CurrentDomain.GetAssemblies()
+    .SelectMany(x => x.GetTypes())
+    .Where(x => x.IsClass && iDay.IsAssignableFrom(x))
+    .ToArray();
 
 if (!int.TryParse(args[0], out var day) || day <= 0 || day > days.Length)
 {
@@ -36,7 +36,6 @@ if (now < then)
     return;
 }
 
-
 var (input, error) = await day.GetInput();
 if (!string.IsNullOrWhiteSpace(error))
 {
@@ -49,7 +48,9 @@ else if (string.IsNullOrWhiteSpace(input))
     return;
 }
 
-var (p1, p2) = days[day - 1].Parts(input);
+var (p1, p2) = Expression.Lambda<Func<IDay>>(
+    Expression.New(days[day - 1].GetConstructor(Type.EmptyTypes)!)
+).Compile()().Parts(input);
 
 var sw = new Stopwatch();
 sw.Start();
