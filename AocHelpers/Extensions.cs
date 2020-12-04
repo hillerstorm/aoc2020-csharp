@@ -12,8 +12,8 @@ namespace aoc2020
 {
     public static class Extensions
     {
-        public static string[] SplitLines(this string input) =>
-            input.Split("\n", StringSplitOptions.RemoveEmptyEntries);
+        public static string[] SplitLines(this string input, StringSplitOptions options = StringSplitOptions.RemoveEmptyEntries) =>
+            input.Split("\n", options);
 
         public static int[] SplitAsInt(this string input, string separator = "\n") =>
             input.Split(separator, StringSplitOptions.RemoveEmptyEntries).Select(int.Parse).ToArray();
