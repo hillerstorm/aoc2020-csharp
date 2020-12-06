@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Nito.Collections;
 // ReSharper disable MemberCanBePrivate.Global
 // ReSharper disable UnusedType.Global
+// ReSharper disable InconsistentNaming
 
 namespace aoc2020
 {
