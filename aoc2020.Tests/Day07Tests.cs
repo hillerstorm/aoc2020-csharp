@@ -1,21 +1,20 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using aoc2020.Days;
 using Xunit;
 
 namespace aoc2020.Tests
 {
-    public class Day06Tests
+    public class Day07Tests
     {
         [Fact]
         public void TestPart1()
         {
             var assertions = new[]
             {
-                ("Inputs/06.txt", 11),
+                ("Inputs/07_1.txt", 4),
             };
             assertions.ForEach(((string Input, int Expected) x) =>
-                Assert.Equal(x.Expected, Day06.Part1(File.ReadAllText(x.Input).Split("\n\n", StringSplitOptions.RemoveEmptyEntries))));
+                Assert.Equal(x.Expected, Day07.Part1(File.ReadAllText(x.Input).SplitLines())));
         }
 
         [Fact]
@@ -23,10 +22,11 @@ namespace aoc2020.Tests
         {
             var assertions = new[]
             {
-                ("Inputs/06.txt", 6),
+                ("Inputs/07_1.txt", 32),
+                ("Inputs/07_2.txt", 126),
             };
             assertions.ForEach(((string Input, int Expected) x) =>
-                Assert.Equal(x.Expected, Day06.Part2(File.ReadAllText(x.Input).Split("\n\n", StringSplitOptions.RemoveEmptyEntries))));
+                Assert.Equal(x.Expected, Day07.Part2(File.ReadAllText(x.Input).SplitLines())));
         }
     }
 }
