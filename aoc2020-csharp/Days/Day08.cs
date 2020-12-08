@@ -42,7 +42,7 @@ namespace aoc2020.Days
                     return changed != null ? null : acc;
 
                 seen.Add(i);
-                var (op, value, _) = input[i % input.Count].Split(" ");
+                var (op, value, _) = input[i].Split(" ");
                 switch (op)
                 {
                     case "acc":
