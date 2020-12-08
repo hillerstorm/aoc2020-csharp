@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Numerics;
-
 // ReSharper disable MemberCanBePrivate.Global
 // ReSharper disable UnusedParameter.Global
 
@@ -22,13 +20,13 @@ namespace aoc2020.Days
         public static int Part1(IEnumerable<string> input) =>
             input.Select((row, i) => row[i * 3 % row.Length] == '#' ? 1 : 0).Sum();
 
-        public static BigInteger Part2(string[] input)
+        public static long Part2(string[] input)
         {
-            var a = BigInteger.Zero;
-            var b = BigInteger.Zero;
-            var c = BigInteger.Zero;
-            var d = BigInteger.Zero;
-            var e = BigInteger.Zero;
+            long a = 0;
+            long b = 0;
+            long c = 0;
+            long d = 0;
+            long e = 0;
             for (var index = 1; index < input.Length; index++)
             {
                 var row = input[index];
