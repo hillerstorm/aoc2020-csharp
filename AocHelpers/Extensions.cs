@@ -19,6 +19,9 @@ namespace aoc2020
         public static int[] SplitAsInt(this string input, string separator = "\n") =>
             input.Split(separator, StringSplitOptions.RemoveEmptyEntries).Select(int.Parse).ToArray();
 
+        public static long[] SplitAsLong(this string input, string separator = "\n") =>
+            input.Split(separator, StringSplitOptions.RemoveEmptyEntries).Select(long.Parse).ToArray();
+
         public static async Task<(string? Input, string? Error)> GetInput(this int day)
         {
             var inputPath = $"Inputs/{day:00}.txt";
