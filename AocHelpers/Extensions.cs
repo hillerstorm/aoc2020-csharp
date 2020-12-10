@@ -62,6 +62,15 @@ namespace aoc2020
         public static IEnumerable<(int X, int Y)> Square(int x, int y, int width, int height) =>
             x.To(width).Pairs(y.To(height));
 
+        public static IEnumerable<(T A, T B)> TakeTwo<T>(this IReadOnlyList<T> source)
+        {
+            if (source.Count < 2)
+                yield break;
+
+            for (var i = 1; i < source.Count; i++)
+                yield return (source[i - 1], source[i]);
+        }
+
         public static IEnumerable<(T1 A, T2 B)> Pairs<T1, T2>(this IEnumerable<T1> source, IEnumerable<T2> other) =>
             source.SelectMany(x => other.Select(y => (x, y)));
 
