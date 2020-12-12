@@ -33,15 +33,14 @@ namespace aoc2020.Days
 
         private static int Iterate(string input, Part part)
         {
-            var split = input.SplitLines();
-            var width = split[0].Length;
-            var height = split.Length;
-            var current = string.Join("", split);
+            var width = input.IndexOf('\n');
+            var height = input.Count(x => x == '\n');
+            var current = new Span<char>(input.Replace("\n", string.Empty).ToCharArray());
             var next = current.ToArray();
             var changes = true;
             while (changes)
             {
-                current = new string(next);
+                next.CopyTo(current);
                 changes = false;
                 for (var i = 0; i < current.Length; i++)
                 {
@@ -63,14 +62,20 @@ namespace aoc2020.Days
                 }
             }
 
-            return current.Count(n => n == '#');
+            return next.Count(n => n == '#');
         }
 
-        private static int CountOccupiedNeighbours(string current, int width, int height, int x, int y, Part part) =>
-            Deltas.Count(d => HasNeighbour(current, width, height, x, y, d.DX, d.DY, part));
+        private static int CountOccupiedNeighbours(Span<char> current, int width, int height, int x, int y, Part part)
+        {
+            var sum = 0;
+            foreach (var (dx, dy) in Deltas)
+                if (HasNeighbour(current, width, height, x, y, dx, dy, part))
+                    sum++;
+            return sum;
+        }
 
         private static bool HasNeighbour(
-            string current,
+            Span<char> current,
             in int width,
             in int height,
             int x,
