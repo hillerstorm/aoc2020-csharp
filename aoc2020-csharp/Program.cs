@@ -5,30 +5,34 @@ using System.Linq.Expressions;
 using System.Runtime.InteropServices;
 using aoc2020;
 
-if (args.Length == 0)
-{
-    Console.WriteLine("No day given");
-    return;
-}
-
 var iDay = typeof(IDay);
 Type[] days = AppDomain.CurrentDomain.GetAssemblies()
     .SelectMany(x => x.GetTypes())
     .Where(x => x.IsClass && iDay.IsAssignableFrom(x))
     .ToArray();
 
-if (!int.TryParse(args[0], out var day) || day <= 0 || day > days.Length)
-{
-    Console.WriteLine($"Invalid input, must be a day between 1-{days.Length}");
-    return;
-}
-
 var info = TimeZoneInfo.FindSystemTimeZoneById(
     RuntimeInformation.IsOSPlatform(OSPlatform.Windows)
         ? "Eastern Standard Time"
         : "America/New_York"
 );
+
+int day;
 var now = new DateTimeOffset(TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, info), info.BaseUtcOffset);
+if (args.Length == 0)
+{
+    Console.WriteLine("No day given, trying latest");
+    if (now > new DateTimeOffset(2020, 12, 26, 0, 0, 0, info.BaseUtcOffset))
+        day = 25;
+    else
+        day = now.Day;
+}
+else if (!int.TryParse(args[0], out day) || day <= 0 || day > days.Length)
+{
+    Console.WriteLine($"Invalid input, must be a day between 1-{days.Length}");
+    return;
+}
+
 var then = new DateTimeOffset(2020, 12, day, 0, 0, 0, info.BaseUtcOffset);
 if (now < then)
 {
