@@ -53,8 +53,8 @@ namespace aoc2020
             var i = 0;
             while (true)
             {
-                yield return arr[i % arr.Length];
-                i++;
+                yield return arr[i];
+                i = (i + 1) % arr.Length;
             }
             // ReSharper disable once IteratorNeverReturns
         }
